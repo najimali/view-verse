@@ -1,8 +1,10 @@
-
+import Body from "./components/Body";
+import Header from "./components/Header";
 function App() {
   return (
-    <div className='text-3xl font-bold border border-red-200'>
-      Hello View Verse
+    <div>
+      <Header></Header>
+      <Body></Body>
     </div>
   );
 }
