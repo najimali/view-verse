@@ -7,7 +7,7 @@ const VideoCard = ({ data }) => {
     const { snippet, statistics } = data
     const { title, publishedAt, thumbnails: { high: { url } }, channelTitle } = snippet
     return (
-        <div className="flex flex-col justify-start items-center w-96 p-4 shadow-md gap-1 mt-4 rounded-md">
+        <div className="flex flex-col justify-start items-center w-96 p-4 gap-1 m-4 rounded-md hover:shadow-xl">
             <div >
                 <img alt ="video"className="w-96 h-60 rounded-md" src={url}></img>
             </div>
