@@ -4,10 +4,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const VideoCard = ({ data }) => {
     if (!data) return
-    const { id, snippet, statistics } = data
+    const { snippet, statistics } = data
     const { title, publishedAt, thumbnails: { high: { url } }, channelTitle } = snippet
     return (
-        <div className="flex flex-col justify-start items-center w-96 p-4 shadow-md gap-1 m-4 rounded-md" key={id}>
+        <div className="flex flex-col justify-start items-center w-96 p-4 shadow-md gap-1 mt-4 rounded-md">
             <div >
                 <img alt ="video"className="w-96 h-60 rounded-md" src={url}></img>
             </div>
