@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-import navReducer from './navSlice';
+import sideBarReducer from './sideBarSlice';
 
 export const store = configureStore({
     reducer: {
-        nav: navReducer
+        sideBar: sideBarReducer
     },
 });

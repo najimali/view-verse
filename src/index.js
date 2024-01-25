@@ -5,15 +5,45 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux'
 import { store } from './store/store';
-
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import Body from "./components/Body"
+import VideoDetailPage from "./components/VideoDetailPage"
+import MainContainer from "./components/MainContainer"
 const root = ReactDOM.createRoot(document.getElementById('root'));
+const appRouter = createBrowserRouter([
+  {
+    path: "/",
+    element: <Provider store={store}> <App /> </Provider>,
+    children: [
+      {
+        path: "/",
+        element: <Body></Body>,
+        children: [
+          {
+            path: "/",
+            element: <MainContainer></MainContainer>
+          },
+          {
+            path: "/watch",
+            element: <VideoDetailPage></VideoDetailPage>
+          }
+        ]
+      }
+    ]
+  },
+
+])
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
+    <RouterProvider router={appRouter}>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </RouterProvider>
+
   </React.StrictMode>
 );
+
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
