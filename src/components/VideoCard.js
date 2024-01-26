@@ -13,12 +13,12 @@ const VideoCard = ({ data }) => {
     return (
         <Link to={`/watch?v=${id}`} onClick={() => dispatch(closeSideBar())
         }>
-            <div className="flex flex-col justify-start items-center w-96 p-4 gap-1 m-4 rounded-md hover:shadow-xl">
+            <div className="flex flex-col justify-start items-center w-96 p-4 gap-1 m-4 rounded-lg hover:shadow-xl">
                 <div >
                     <img alt="video" className="w-96 h-60 rounded-md" src={url}></img>
                 </div>
                 <div className="gap-2">
-                    <div className="flex flex-wrap  font-semibold text-start">{title}</div>
+                    <div className="flex flex-wrap  font-semibold text-start">{title?.substring(0, 85)}</div>
                     <div className="mt-2 text-start">{channelTitle}</div>
                     <div className="text-start">{formatNumber(statistics?.viewCount || 0)} views <span><FontAwesomeIcon className="w-[5px]" icon={faCircle} /></span> {timeAgo(publishedAt)}</div>
                 </div>
