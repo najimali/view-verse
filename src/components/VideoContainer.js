@@ -5,7 +5,7 @@ import VideoCard from "./VideoCard.js"
 const VideoContainer = () => {
     const { data: videos } = useFetch(GET_VIDEOS_URL)
     return (
-        <div className="flex flex-wrap">
+        <div className="w-full flex flex-wrap">
             {(videos?.items || []).map(video => 
             <VideoCard
                 key={video.id}

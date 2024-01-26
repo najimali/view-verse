@@ -6,7 +6,7 @@ import { openSideBar, toggleSideBar } from '../store/sideBarSlice';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import useFetch from '../hooks/useFetch';
-import { DEBOUNCE_DELAYS, SUGGESTION_KEYWORD_URL } from '../utils/constants';
+import { debounceDelays, SUGGESTION_KEYWORD_URL } from '../utils/constants';
 import SuggestionSearch from './SuggestionSearch';
 const Header = () => {
     const dispatch = useDispatch()
@@ -15,7 +15,7 @@ const Header = () => {
     const [suggestionSearchUrl, setSuggestionSearchUrl] = useState(SUGGESTION_KEYWORD_URL())
     const { data: suggestions } = useFetch(suggestionSearchUrl)
     useEffect(() => {
-        const timer = setTimeout(() => setSuggestionSearchUrl(SUGGESTION_KEYWORD_URL(searchTerm)), DEBOUNCE_DELAYS.SEARCH_INPUT)
+        const timer = setTimeout(() => setSuggestionSearchUrl(SUGGESTION_KEYWORD_URL(searchTerm)), debounceDelays.SEARCH_INPUT)
         return () => clearTimeout(timer)
     }, [searchTerm])
     return (
