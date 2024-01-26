@@ -1,6 +1,6 @@
 import { useSearchParams } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
-import { GET_CHANNEL_BY_ID, GET_VIDEO_BY_ID_URL, VISIBLE_DESCRIPTION_LENGTH } from "../utils/constants";
+import { GET_CHANNEL_BY_ID, GET_VIDEO_BY_ID_URL, MORE_TEXT, VISIBLE_DESCRIPTION_LENGTH } from "../utils/constants";
 import { useEffect, useState } from "react";
 import { formatNumber } from "../utils/commonFunction";
 import Description from "./Description";
@@ -59,17 +59,16 @@ const VideoDetailPage = () => {
                         <button className=" text-white bg-black px-3 py-2 rounded-l-full rounded-r-full outline-none">Subscribe</button>
                     </div>
                 </div>
-                {!showMoreDescription && video?.snippet?.description ?
+                {video?.snippet?.description ?
                     <Description
-                        data={`${video.snippet.description.substring(0, VISIBLE_DESCRIPTION_LENGTH) + "\n...more"}`}
+                        data={
+                            showMoreDescription ? video.snippet.description
+                                : `${video.snippet.description.substring(0, VISIBLE_DESCRIPTION_LENGTH)}${MORE_TEXT}`
+                        }
                         setShowMoreDescription={setShowMoreDescription}
                     />
                     : null}
-                {showMoreDescription && video?.snippet?.description ?
-                    <Description
-                        data={video.snippet.description}
-                        setShowMoreDescription={setShowMoreDescription}
-                    /> : null}
+
             </div>
         </div>
     )
