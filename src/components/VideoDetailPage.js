@@ -1,15 +1,16 @@
 import { useSearchParams } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
-import { GET_CHANNEL_BY_ID, GET_COMMENTS_BY_VIDEO_ID, GET_VIDEO_BY_ID_URL } from "../utils/constants";
+import { GET_CHANNEL_BY_ID, GET_VIDEO_BY_ID_URL, VISIBLE_DESCRIPTION_LENGTH } from "../utils/constants";
 import { useEffect, useState } from "react";
 import { formatNumber } from "../utils/commonFunction";
 import Description from "./Description";
 const VideoDetailPage = () => {
     const [searchParams] = useSearchParams();
     const id = searchParams.get('v');
-    const { data: videoResponse } = useFetch(GET_VIDEO_BY_ID_URL(id))
     const [video, setVideo] = useState({})
     const [channel, setChannel] = useState({})
+    const [showMoreDescription, setShowMoreDescription] = useState(false)
+    const { data: videoResponse } = useFetch(GET_VIDEO_BY_ID_URL(id))
     const { data: channelResponse } = useFetch(GET_CHANNEL_BY_ID(video?.snippet?.channelId))
     useEffect(() => {
         if (videoResponse?.items?.length) {
@@ -58,7 +59,17 @@ const VideoDetailPage = () => {
                         <button className=" text-white bg-black px-3 py-2 rounded-l-full rounded-r-full outline-none">Subscribe</button>
                     </div>
                 </div>
-                {video?.snippet?.description ? <Description data={video.snippet.description} /> : null}
+                {!showMoreDescription && video?.snippet?.description ?
+                    <Description
+                        data={`${video.snippet.description.substring(0, VISIBLE_DESCRIPTION_LENGTH) + "\n...more"}`}
+                        setShowMoreDescription={setShowMoreDescription}
+                    />
+                    : null}
+                {showMoreDescription && video?.snippet?.description ?
+                    <Description
+                        data={video.snippet.description}
+                        setShowMoreDescription={setShowMoreDescription}
+                    /> : null}
             </div>
         </div>
     )

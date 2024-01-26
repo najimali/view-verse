@@ -8,7 +8,7 @@ export const apiActions = {
     SET_DATA: "setData",
     SET_ERROR: "setError"
 }
-
+export const VISIBLE_DESCRIPTION_LENGTH = 250
 export const debounceDelays = {
     SEARCH_INPUT: 500,
 };
