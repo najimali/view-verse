@@ -1,26 +1,34 @@
 import { useSearchParams } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
-import { GET_CHANNEL_BY_ID, GET_VIDEO_BY_ID_URL, MORE_TEXT, VISIBLE_DESCRIPTION_LENGTH } from "../utils/constants";
+import { GET_CHANNEL_BY_ID, GET_COMMENTS_BY_VIDEO_ID, GET_VIDEO_BY_ID_URL, MORE_TEXT, VISIBLE_DESCRIPTION_LENGTH } from "../utils/constants";
 import { useEffect, useState } from "react";
 import { formatNumber } from "../utils/commonFunction";
-import Description from "./Description";
+import VideoDescription from "./VideoDescription";
+import CommentsContainer from "./CommentsContainer";
 const VideoDetailPage = () => {
     const [searchParams] = useSearchParams();
-    const id = searchParams.get('v');
+    const videoId = searchParams.get('v');
     const [video, setVideo] = useState({})
     const [channel, setChannel] = useState({})
+    const [comments, setComments] = useState({})
     const [showMoreDescription, setShowMoreDescription] = useState(false)
-    const { data: videoResponse } = useFetch(GET_VIDEO_BY_ID_URL(id))
+    const { data: videoResponse } = useFetch(GET_VIDEO_BY_ID_URL(videoId))
     const { data: channelResponse } = useFetch(GET_CHANNEL_BY_ID(video?.snippet?.channelId))
+    const { data: commentsResponse } = useFetch(GET_COMMENTS_BY_VIDEO_ID(videoId))
+    console.log(comments);
+    useEffect(() => {
+        if (commentsResponse?.items?.length) {
+            setComments(commentsResponse?.items)
+        }
+    }, [commentsResponse])
     useEffect(() => {
         if (videoResponse?.items?.length) {
-            console.log(videoResponse);
+
             setVideo(videoResponse?.items[0])
         }
     }, [videoResponse])
     useEffect(() => {
         if (channelResponse?.items?.length) {
-            console.log(channelResponse);
             setChannel(channelResponse?.items[0])
         }
     }, [channelResponse])
@@ -30,7 +38,7 @@ const VideoDetailPage = () => {
                 <iframe
                     className="w-9/12 rounded-lg"
                     height="550"
-                    src={`https://www.youtube.com/embed/${id}`}
+                    src={`https://www.youtube.com/embed/${videoId}`}
                     title="YouTube video player"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     allowFullScreen>
@@ -60,7 +68,7 @@ const VideoDetailPage = () => {
                     </div>
                 </div>
                 {video?.snippet?.description ?
-                    <Description
+                    <VideoDescription
                         data={
                             showMoreDescription ? video.snippet.description
                                 : `${video.snippet.description.substring(0, VISIBLE_DESCRIPTION_LENGTH)}${MORE_TEXT}`
@@ -70,6 +78,7 @@ const VideoDetailPage = () => {
                     : null}
 
             </div>
+            <CommentsContainer data={comments} />
         </div>
     )
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Description = ({ data, setShowMoreDescription }) => {
+const VideoDescription = ({ data, setShowMoreDescription }) => {
     const urlRegex = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#/%?=~_|!:,.;]*[-A-Z0-9+&@#/%=~_|])/gi;
 
     const renderText = (line) => {
@@ -19,11 +19,11 @@ const Description = ({ data, setShowMoreDescription }) => {
     };
     const lines = data.split('\n');
     return (
-        <div className="w-9/12 h-100 mt-2 px-2 py-4 bg-neutral-100 shadow space-y-2 rounded-md"
-            onClick={() => setShowMoreDescription(prev=> !prev)}
+        <div className="w-9/12 h-100 mt-2 px-2 py-4 bg-zinc-100 shadow space-y-2 rounded-md"
+            onClick={() => setShowMoreDescription(prev => !prev)}
         >
             {lines.map((line, index) => (
-                <p key={index} className="text-base text-gray-700">
+                <p key={index} className="text-sm text-gray-700">
                     {renderText(line)}
                 </p>
             ))}
@@ -31,4 +31,4 @@ const Description = ({ data, setShowMoreDescription }) => {
     );
 };
 
-export default Description;
+export default VideoDescription;

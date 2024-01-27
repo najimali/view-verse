@@ -11,6 +11,7 @@ export const formatNumber = (num, digitAfterDot = 1) => {
 }
 
 export const timeAgo = (publishedAt) => {
+    if (!publishedAt) return ''
     const publishedDate = new Date(publishedAt);
     const currentDate = new Date();
     const diffInSeconds = Math.floor((currentDate - publishedDate) / 1000);
