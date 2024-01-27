@@ -8,6 +8,9 @@ export const apiActions = {
     SET_DATA: "setData",
     SET_ERROR: "setError"
 }
+export const MAX_VISIBLE_LIVE_CHAT_COUNT = 20
+export const POLL_LIVE_CHAT_MESSAGE_DELAY = 1500 //ms
+export const MAX_FAKE_SENTENCE_COUNT = 6 //ms
 export const VISIBLE_DESCRIPTION_LENGTH = 250
 export const MORE_TEXT = "\n...more"
 export const debounceDelays = {

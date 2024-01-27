@@ -19,7 +19,7 @@ const VideoDescription = ({ data, setShowMoreDescription }) => {
     };
     const lines = data.split('\n');
     return (
-        <div className="w-9/12 h-100 mt-2 px-2 py-4 bg-zinc-100 shadow space-y-2 rounded-md"
+        <div className="h-100 mt-2 px-2 py-4 bg-zinc-100 shadow space-y-2 rounded-md"
             onClick={() => setShowMoreDescription(prev => !prev)}
         >
             {lines.map((line, index) => (
