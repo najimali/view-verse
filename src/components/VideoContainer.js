@@ -2,20 +2,25 @@ import React, { useState, useEffect } from 'react';
 import { GET_VIDEOS_URL, MAX_VIDEOS_ON_LANDING_PAGE } from "../utils/constants"
 import VideoCard from "./VideoCard.js"
 import axios from "axios";
+import ShimmerCards from './ShimmerCards';
+
 
 const VideoContainer = () => {
     const [pageToken, setPageToken] = useState('');
     const [videos, setVideos] = useState([]);
-    const [apiFetchCounter, setApiFetchCounter] = useState(1)
+    const [apiFetchCounter, setApiFetchCounter] = useState(0)
+    const [loading, setLoading] = useState(true)
     useEffect(() => {
         const fetchData = async () => {
             if (videos?.length >= MAX_VIDEOS_ON_LANDING_PAGE) return
+            setLoading(true)
             const response = await axios.get(`${GET_VIDEOS_URL}&pageToken=${pageToken}`);
             const videoResponse = response?.data
             if (videoResponse) {
                 setPageToken(videoResponse.nextPageToken)
                 setVideos(prev => [...prev, ...videoResponse.items])
             }
+            setLoading(false)
         }
         fetchData();
     }, [apiFetchCounter]);
@@ -41,6 +46,9 @@ const VideoContainer = () => {
                     data={video}
                 />
             )}
+            {
+                loading ? <ShimmerCards></ShimmerCards> : null
+            }
         </div>
     );
 }
