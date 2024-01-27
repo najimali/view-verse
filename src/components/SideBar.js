@@ -41,7 +41,7 @@ const SideBar = () => {
         }
     ]
     return (
-        <div className="shadow-lg h-[100vh] w-60 px-10 py-2 gap-4">
+        <div className="shadow-lg h-[100vh] w-60 px-10 pt-2 gap-4">
             <div className="flex flex-col border-b border-b-1 gap-2 py-1 mb-2">
 
                 {mainList.map(({ text, icon }) => (

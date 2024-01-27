@@ -5,13 +5,12 @@ import VideoCard from "./VideoCard.js"
 const VideoContainer = () => {
     const { data: videos } = useFetch(GET_VIDEOS_URL)
     return (
-        <div className="w-full flex flex-wrap">
+        <div className="flex flex-wrap w-full h-[100vh] overflow-y-scroll no-scrollbar">
             {(videos?.items || []).map(video => 
             <VideoCard
                 key={video.id}
                 data={video}
             />)}
-
         </div>
     )
 }
