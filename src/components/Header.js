@@ -19,7 +19,7 @@ const Header = () => {
         return () => clearTimeout(timer)
     }, [searchTerm])
     return (
-        <div className='flex justify-between items-center h-20 py-10 px-4 shadow-sm'>
+        <div className='flex justify-between items-center h-20 py-10 px-4'>
             <div className='flex items-center w-2/12 p-2'>
                 <FontAwesomeIcon className='mx-8 h-6 cursor-pointer' icon={faBars} onClick={() => {
                     dispatch(toggleSideBar())
