@@ -17,11 +17,12 @@
         - Search Bar
         - User Profile
 
-    - Left SideBar
+    
     - Body
-        - Button List
-        - Video Container 
-            - Video Card (On Click open to Detail Page)
-    - Video Detail Page(/watch)
-        - Watch Video Container
+        - Left SideBarContainer
+        - MainContainer
+            - Button List
+            - Video Container 
+                - Video Card (On Click open to Detail Page)
+        - Video Detail Page(/watch)
 

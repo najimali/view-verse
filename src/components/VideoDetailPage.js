@@ -49,6 +49,7 @@ const VideoDetailPage = () => {
                     <div className="flex items-center">
                         <div>
                             <img
+                                alt="thumbnails"
                                 className="w-12 h-12 rounded-full object-center"
                                 src={channel?.snippet?.thumbnails?.high?.url}
                             >
