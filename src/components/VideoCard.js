@@ -13,7 +13,7 @@ const VideoCard = ({ data }) => {
     return (
         <Link to={`/watch?v=${id}`} onClick={() => dispatch(closeSideBar())
         }>
-            <div className="flex flex-col justify-start items-center w-96 h-96 p-4 gap-1 m-4 rounded-lg hover:shadow-lg">
+            <div className="flex flex-col justify-start items-center w-96 p-4 gap-1 m-4 rounded-lg hover:shadow-lg">
                 <div >
                     <img alt="video" className="w-96 h-60 rounded-md" src={url}></img>
                 </div>
